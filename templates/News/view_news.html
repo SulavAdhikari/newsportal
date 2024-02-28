@@ -1,0 +1,14 @@
+<!-- news/templates/news/view_news.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ news.title }}</h1>
+<div class="newscontent">
+
+  <p>{{ news.content|linebreaks }}</p>
+  <hr>
+  <p>Author: {{ news.author.username }}</p>
+  <p>Created at: {{ news.created_at }}</p>
+</div>  
+
+  {% endblock %}

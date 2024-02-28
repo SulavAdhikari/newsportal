@@ -1,0 +1,11 @@
+<!-- news/templates/news/post_news.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Post News</h1>
+  <form method="post" class="NewsForm" action="{% url 'post_news' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Post News</button>
+  </form>
+{% endblock %}

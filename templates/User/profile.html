@@ -1,0 +1,45 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Login - News Portal{% endblock %}
+
+{% block content %}
+  <h1>Profile</h1>
+
+  {% if profile is not None %}
+
+    <div class="prof_det">
+
+        <p>Your Phone Number: {{profile.phone_number}}</p>
+        <p>Your Address: {{profile.address}}</p>
+
+    </div>  
+    <hr>
+    <h1>Posts</h1>
+
+        <div class="newslist">
+
+            {% for news in profile.user.articles.all %}
+            <h2>
+                <a class="newstitle positive" href="{% url 'view_news' news.id %}">
+                    {{ news.title }}
+                </a>
+            </h2>
+            <div class="details">
+                <p>- Published: {{ news.published }}</p>
+            </div>
+            <div class="line">
+                <hr>
+            </div>
+            {% endfor %}
+        </div>
+
+  {% else %}
+  <form method="post" class="AuthForm" action="{% url 'user_profile' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">submit</button>
+  </form>
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,22 @@
+<!-- news/templates/news/list_news.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>News List</h1>
+  <div class="newslist">
+  {% for news in news_list %}
+
+    <h2>
+      <a class="newstitle {{news.sentiment}}" href="{% url 'view_news' news.id %}">
+      {{ news.title }}
+      </a>
+      </h2>
+      <div class="details">
+        <p>- {{ news.author.username }}</p>
+      </div>
+      <div class="line">
+        <hr>
+      </div>
+      {% endfor %}
+    </div>
+{% endblock %}
